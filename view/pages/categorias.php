@@ -1,4 +1,33 @@
 <?php
+require_once __DIR__ . '../../../config/Database.php';
+require_once __DIR__ . '../../../model/Categorias.php';
+
+$categorias = new Categorias();
+$listar = $categorias->listar();
+
+
+
+if (isset($_GET['id'])) {
+    $modo = 'editar';
+    $categoriasModel = new Categorias();
+    $categorias = $categoriasModel->buscarPorId($_GET['id']);
+    
+} 
+    else {
+    $modo = 'criar';
+    $categorias = [
+        'id' => '',
+        'nome' => '',
+    ]
+
+    ;};
+
+if (isset($_POST['id'])) {
+    $excluir = new Categorias();
+    $excluir->Excluir($_POST['id']);
+    header('Location: categorias.php');
+}
+
 
 ?>
 
@@ -14,9 +43,12 @@
 </head>
 
 <body>
+
+    
     <?php require_once __DIR__ . '\..\components\navbar.php'; ?>
 
     <?php require_once __DIR__ . '\..\components\sidebar.php'; ?>
+
 
     <main>
         <h1>Categorias</h1>
@@ -28,17 +60,17 @@
                 <!-- <th>Descrição</th> -->
             </thead>
             <tbody>
-                <?php foreach ($categorias as $categoria) { ?>
+                <?php foreach ($listar as $cat) { ?>
 
                     <tr>
-                        <td><?php echo $categoria['id'] ?></td>
-                        <td><?php echo $categoria['nome'] ?></td>
+                        <td><?php echo $cat['id'] ?></td>
+                        <td><?php echo $cat['nome'] ?></td>
                         </td>
                         <td>
 
                             <!-- METHODS - Get / Post -->
                             <form action=".php" method="GET">
-                                <input type="hidden" name="id" value="<?php echo $filme['id'] ?>">
+                                <input type="hidden" name="id" value="<?php echo $categorias()['id'] ?>">
                                 <button>
                                     <span class="material-symbols-outlined">
                                        Visualizar
@@ -47,7 +79,7 @@
                             </form>
 
                             <form action=".php" method="GET">
-                                <input type="hidden" name="id" value="<?php echo $filme['id'] ?>">
+                                <input type="hidden" name="id" value="<?php echo $categorias->buscarPorId()['id'] ?>">
                                 <button>
                                     <span class="material-symbols-outlined">
                                         Editar
@@ -56,7 +88,7 @@
                             </form>
 
                             <form action="excluir.php" method="POST">
-                                <input type="hidden" name="id" value="<?php echo $filme['id'] ?>">
+                                <input type="hidden" name="id" value="<?php echo $categorias->Excluir()['id'] ?>">
                                 <button onclick="return confirm('Tem certeza que deseja excluir o filme?')">
                                     <span class="material-symbols-outlined">
                                         Deletar

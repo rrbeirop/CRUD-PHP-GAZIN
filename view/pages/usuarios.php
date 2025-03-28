@@ -1,10 +1,10 @@
 <?php
 
+require_once __DIR__ . '../../../config/Database.php';
+require_once __DIR__ . '../../../model/Usuarios.php';
 
-$host = 'localhost';      
-$dbname = '';    
-$username = '';
-$password = ''; 
+$users = new Usuarios();
+$listar = $users->listar();
 
 
 ?>
@@ -22,7 +22,6 @@ $password = '';
 
 <body>
     <?php require_once __DIR__ . '\..\components\navbar.php'; ?>
-
     <?php require_once __DIR__ . '\..\components\sidebar.php'; ?>
 
     <main>
@@ -33,25 +32,22 @@ $password = '';
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Email</th>
-                <th>Senha</th>
                 <th>Telefone</th>
                 <th>Data de Nascimento</th>
                 <th>CPF</th>
-                <th>Genero</th>
-                <th>Foto</th>
+                
+                
             </thead>
             <tbody>
-                <?php foreach ($usuarios as $usuario) { ?>
+                <?php foreach ($users as $usuario) { ?>
                     <tr>
                         <td><?php echo $usuario['id'] ?></td>
                         <td><?php echo $usuario['nome'] ?></td>
                         <td><?php echo $usuario['email'] ?></td>
-                        <td><?php echo $usuario['senha'] ?></td>
                         <td><?php echo $usuario['telefone'] ?></td>
                         <td><?php echo $usuario['data_nascimento'] ?></td>
                         <td><?php echo $usuario['cpf'] ?></td>
-                        <td><?php echo $usuario['genero'] ?></td>
-                        <td><?php echo $usuario['foto_perfil'] ?></td>
+                        
                         <td>
                             <!-- METHODS - Get / Post -->
                             <form action="visualizar.php" method="GET">

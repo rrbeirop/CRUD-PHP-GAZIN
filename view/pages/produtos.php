@@ -1,4 +1,9 @@
 <?php
+require_once __DIR__ . '../../../config/Database.php';
+require_once __DIR__ . '../../../model/Produtos.php';
+
+$produtos = new Produtos();
+$listar = $produtos->listar();
 
 ?>
 
@@ -31,12 +36,11 @@
                 <th>Preço</th>
             </thead>
             <tbody>
-                <?php foreach ($produtos as $produto) { ?>
+                <?php foreach ($listar as $produto) { ?>
                     <tr>
                         <td><?php echo $produto['id'] ?></td>
                         <td><?php echo $produto['nome'] ?></td>
                         <td><?php echo $produto['descricao'] ?></td>
-                        <td><?php echo $produto['categoria'] ?></td>
                         <td><?php echo $produto['preco'] ?></td>
                         <td>
                             <!-- METHODS - Get / Post -->
