@@ -44,6 +44,7 @@ class Categorias {
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
+    
     }
 
 }

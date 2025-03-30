@@ -36,7 +36,7 @@ if (isset($_POST['id'])) {
 
     <!-- Formulário de edição/criação -->
     <form action="categoria_form.php" method="POST">
-        <!-- Campo oculto para o ID da categoria, caso seja edição -->
+        
         <input type="hidden" name="id" value="<?php echo $categoria['id']; ?>">
 
         <label for="nome">Nome da Categoria:</label>
@@ -46,6 +46,7 @@ if (isset($_POST['id'])) {
     </form>
 
     <?php if ($modo == 'editar' && isset($categoria['id']) && $categoria['id']): ?>
+        
     <!-- Formulário de exclusão -->
     
     <h3>Excluir Categoria</h3>

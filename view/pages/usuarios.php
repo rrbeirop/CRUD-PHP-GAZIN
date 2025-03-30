@@ -7,15 +7,23 @@ $usuario = new Usuarios();
 $listar = $usuario->listar();
 
 
-// Verifique se o ID foi enviado via POST
 if (isset($_POST['id'])) {
     $id = $_POST['id'];
 
-    $usuario = new Usuarios();
-    $usuario->Excluir($id);
-    
-}
+    $excluido = new Usuarios();
+    $excluido->Excluir($id);
 
+    // Verificar se a exclusão foi bem-sucedida
+    if ($excluido) {
+        // Redirecionar com uma mensagem de sucesso
+        header("Location: home.php?mensagem=usuário excluído com sucesso");
+        exit;
+    } else {
+        // Redirecionar com uma mensagem de erro
+        header("Location: home.php?mensagem=erro ao excluir usuário");
+        exit;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -72,8 +80,8 @@ if (isset($_POST['id'])) {
                             </form>
 
                             <!-- Deletar -->
-                            <form action="Usuarios.php" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?')">
-                                <input type="hidden" name="id" value="<?php echo $usuario['id'] ?>">
+                            <form action="home.php" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?')">
+                                <input type="hidden" name="id" value="<?php echo $excluido->Excluir($id);?>">
                                 <button type="submit" >
                                     <span class="material-symbols-outlined">Deletar</span>
                                 </button>
