@@ -2,8 +2,17 @@
 require_once __DIR__ . '../../../config/Database.php';
 require_once __DIR__ . '../../../model/Produtos.php';
 
+//LISTAR //
 $produtos = new Produtos();
 $listar = $produtos->listar();
+
+// EXCLUIR
+if (isset($_POST['id'])) {
+    $id = $_POST['id'];
+
+    $produto = new Usuarios();
+    $produto->Excluir($id);
+}
 
 ?>
 
@@ -45,7 +54,7 @@ $listar = $produtos->listar();
                         <td>
                             <!-- METHODS - Get / Post -->
                             <form action="visualizar.php" method="GET">
-                                <input type="hidden" name="id" value="<?php echo $filme['id'] ?>">
+                                <input type="hidden" name="id" value="<?php echo $produto['id'] ?>">
                                 <button>
                                     <span class="material-symbols-outlined">
                                         Visualizar
@@ -53,8 +62,8 @@ $listar = $produtos->listar();
                                 </button>
                             </form>
 
-                            <form action="cadastro.php" method="GET">
-                                <input type="hidden" name="id" value="<?php echo $filme['id'] ?>">
+                            <form action="editar-produtos.php" method="GET">
+                                <input type="hidden" name="id" value="<?php echo $produto['id'] ?>">
                                 <button>
                                     <span class="material-symbols-outlined">
                                         Editar
@@ -62,8 +71,8 @@ $listar = $produtos->listar();
                                 </button>
                             </form>
 
-                            <form action="excluir.php" method="POST">
-                                <input type="hidden" name="id" value="<?php echo $filme['id'] ?>">
+                            <form action="Produtos.php" method="POST">
+                                <input type="hidden" name="id" value="<?php echo $produto['id'] ?>">
                                 <button onclick="return confirm('Tem certeza que deseja excluir o filme?')">
                                     <span class="material-symbols-outlined">
                                         Deletar

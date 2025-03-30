@@ -3,9 +3,18 @@
 require_once __DIR__ . '../../../config/Database.php';
 require_once __DIR__ . '../../../model/Usuarios.php';
 
-$users = new Usuarios();
-$listar = $users->listar();
+$usuario = new Usuarios();
+$listar = $usuario->listar();
 
+
+// Verifique se o ID foi enviado via POST
+if (isset($_POST['id'])) {
+    $id = $_POST['id'];
+
+    $usuario = new Usuarios();
+    $usuario->Excluir($id);
+    
+}
 
 ?>
 
@@ -15,7 +24,7 @@ $listar = $users->listar();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Usuários</title>
 
     <link rel="stylesheet" href="../assets/style.css">
 </head>
@@ -25,7 +34,6 @@ $listar = $users->listar();
     <?php require_once __DIR__ . '\..\components\sidebar.php'; ?>
 
     <main>
-        <h1>Usuarios</h1>
 
         <table class="table">
             <thead>
@@ -35,11 +43,9 @@ $listar = $users->listar();
                 <th>Telefone</th>
                 <th>Data de Nascimento</th>
                 <th>CPF</th>
-                
-                
             </thead>
             <tbody>
-                <?php foreach ($users as $usuario) { ?>
+                <?php foreach ($listar as $usuario) { ?>
                     <tr>
                         <td><?php echo $usuario['id'] ?></td>
                         <td><?php echo $usuario['nome'] ?></td>
@@ -49,31 +55,27 @@ $listar = $users->listar();
                         <td><?php echo $usuario['cpf'] ?></td>
                         
                         <td>
-                            <!-- METHODS - Get / Post -->
+                            <!-- Visualizar -->
                             <form action="visualizar.php" method="GET">
-                                <input type="hidden" name="id" value="<?php echo $filme['id'] ?>">
-                                <button>
-                                    <span class="material-symbols-outlined">
-                                        Visualizar
-                                    </span>
+                                <input type="hidden" name="id" value="<?php echo $usuario['id'] ?>">
+                                <button type="submit">
+                                    <span class="material-symbols-outlined">Visualizar</span>
                                 </button>
                             </form>
 
-                            <form action="cadastro.php" method="GET">
-                                <input type="hidden" name="id" value="<?php echo $filme['id'] ?>">
-                                <button>
-                                    <span class="material-symbols-outlined">
-                                        Editar  
-                                    </span>
+                            <!-- Editar -->
+                            <form action="editar-usuarios.php" method="GET">
+                                <input type="hidden" name="id" value="<?php echo $usuario['id'] ?>">
+                                <button type="submit">
+                                    <span class="material-symbols-outlined">Editar</span>
                                 </button>
                             </form>
 
-                            <form action="excluir.php" method="POST">
-                                <input type="hidden" name="id" value="<?php echo $filme['id'] ?>">
-                                <button onclick="return confirm('Tem certeza que deseja excluir o filme?')">
-                                    <span class="material-symbols-outlined">
-                                        Deletar
-                                    </span>
+                            <!-- Deletar -->
+                            <form action="Usuarios.php" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?')">
+                                <input type="hidden" name="id" value="<?php echo $usuario['id'] ?>">
+                                <button type="submit" >
+                                    <span class="material-symbols-outlined">Deletar</span>
                                 </button>
                             </form>
                         </td>
@@ -87,6 +89,3 @@ $listar = $users->listar();
 </body>
 
 </html>
-
-
-
