@@ -36,7 +36,7 @@ $listar = $categorias->listar();
             <tbody>
                 <?php foreach ($listar as $cat) { ?>
 
-                    <tr>
+                    <tr>    
                         <td><?php echo $cat['id'] ?></td>
                         <td><?php echo $cat['nome'] ?></td>
 
