@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php require_once __DIR__ . '/../components/navbar.php'; ?>
     <?php require_once __DIR__ . '/../components/sidebar.php'; ?>
 
-    <form action="" method="post">
+    <form action="usuarios.php" method="post">
         <h2>Editar Informações</h2>
 
         <input type="hidden" name="id" value="<?php echo isset($id) ? $id : ''; ?>">

@@ -47,6 +47,14 @@ class Categorias {
     
     }
 
+//CADASTRAR // 
+    public function Criar($nome): bool {
+        $query = "INSERT INTO categorias (nome) VALUES (:nome)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':nome', $nome);
+        return $stmt->execute();
+    }
+
 }
 
     

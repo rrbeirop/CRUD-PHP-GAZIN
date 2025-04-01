@@ -18,8 +18,8 @@ if (isset($_GET['id'])) {
 if (isset($_POST['id'])) {
     $excluir = new Categorias();
     $excluir->Excluir($_POST['id']);
-    // header('Location: categorias.php');
-    // exit();
+    header('Location: categorias.php');
+    exit();
 }
 ?>
 
@@ -61,7 +61,7 @@ if (isset($_POST['id'])) {
                         <?php if ($modo == 'editar' && isset($categoria['id']) && $categoria['id']): ?>
 
                             <?php endif; ?>
-                    <!-- <h3>Excluir Categoria</h3> -->
+                    
                    
                 
                 </td>

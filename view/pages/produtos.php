@@ -66,7 +66,7 @@ if (isset($_POST['id'])) {
                                 <input type="hidden" name="id" value="<?php echo $produto['id'] ?>">
                                 <button>
                                     <span class="material-symbols-outlined">
-                                        Editar
+                                    Editar
                                     </span>
                                 </button>
                             </form>
@@ -74,9 +74,7 @@ if (isset($_POST['id'])) {
                             <form action="Produtos.php" method="POST">
                                 <input type="hidden" name="id" value="<?php echo $produto['id'] ?>">
                                 <button onclick="return confirm('Tem certeza que deseja excluir o filme?')">
-                                    <span class="material-symbols-outlined">
-                                        Deletar
-                                    </span>
+                                Deletar
                                 </button>
                             </form>
                         </td>

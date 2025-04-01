@@ -56,7 +56,7 @@ $listar = $categorias->listar();
                                 <input type="hidden" name="id" value="<?php echo $cat['id'] ?>">
                                 <button>
                                     <span class="material-symbols-outlined">
-                                        Editar
+                                    <i class="fa-solid fa-pen-to-square"></i>   
                                     </span>
                                 </button>
                             </form>
@@ -66,7 +66,7 @@ $listar = $categorias->listar();
                                 <input type="hidden" name="id" value="<?php echo $cat['id'] ?>">
                                 <button type="submit">
                                     <span class="material-symbols-outlined">
-                                        Deletar
+                                    <i class="fa-solid fa-trash"></i>
                                     </span>
                                 </button>
                             </form>

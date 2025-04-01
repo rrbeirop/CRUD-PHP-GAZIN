@@ -75,15 +75,18 @@ if (isset($_POST['id'])) {
                             <form action="editar-usuarios.php" method="GET">
                                 <input type="hidden" name="id" value="<?php echo $usuario['id'] ?>">
                                 <button type="submit">
-                                    <span class="material-symbols-outlined">Editar</span>
+                                    <span class="material-symbols-outlined">
+                                    Editar
+                                    </span>
+                                
                                 </button>
                             </form>
 
                             <!-- Deletar -->
                             <form action="home.php" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?')">
                                 <input type="hidden" name="id" value="<?php echo $usuario['id'];?>">
-                                <button type="submit" >
-                                    <span class="material-symbols-outlined">Deletar</span>
+                                <button type="submit">
+                                Deletar
                                 </button>
                             </form>
                         </td>
