@@ -1,12 +1,15 @@
 <?php 
 
-require_once __DIR__ . '../../model/CategoriasModel.php';
+require_once __DIR__ . '/../model/CategoriaModel.php';
+require_once __DIR__ . '/../config/Databaseg.php';
+
+$objuser = new CategoriaModel();
 
 if (isset($_POST['cad-categoria'])) {
 
     $nome = $_POST['nome'];
 
-    $objuser->cadastro($nome);
+    $objuser->cadastrar($nome);
 
 
 
