@@ -5,7 +5,14 @@ require_once __DIR__ . '../../../model/Categorias.php';
 $categorias = new Categorias();
 $listar = $categorias->listar();
 
+// EXCLUIR
 
+if (isset($_POST['id'])) {
+    $id = $_POST['id'];
+
+    $cat = new Categorias();
+    $cat->Excluir($id);
+}
 
 ?>
 
@@ -46,7 +53,7 @@ $listar = $categorias->listar();
                                 <input type="hidden" name="id" value="<?php echo $cat['id'] ?>">
                                 <button>
                                     <span class="material-symbols-outlined">
-                                       Visualizar
+                                       Criar
                                     </span>
                                 </button>
                             </form>
@@ -56,7 +63,7 @@ $listar = $categorias->listar();
                                 <input type="hidden" name="id" value="<?php echo $cat['id'] ?>">
                                 <button>
                                     <span class="material-symbols-outlined">
-                                    <i class="fa-solid fa-pen-to-square"></i>   
+                                    Editar
                                     </span>
                                 </button>
                             </form>
@@ -66,7 +73,7 @@ $listar = $categorias->listar();
                                 <input type="hidden" name="id" value="<?php echo $cat['id'] ?>">
                                 <button type="submit">
                                     <span class="material-symbols-outlined">
-                                    <i class="fa-solid fa-trash"></i>
+                                    Deletar
                                     </span>
                                 </button>
                             </form>

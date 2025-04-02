@@ -3,25 +3,53 @@
 require_once __DIR__ . '../../../config/Database.php';  // Certifique-se de que a conexão com o banco esteja incluída corretamente.
 require_once __DIR__ . '../../../model/Categorias.php'; // Certifique-se de que a classe Categorias está corretamente incluída.
 
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $id = $_GET['id'];
+    // $nome = $_POST['nome'];
+    
+    $categoria = new Categorias();
+    $cat = $categoria->BuscarPorId($id);
+
+    // echo "Produto atualizado com sucesso!";
+}
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = $_POST['id'];
+    $nome = $_POST['nome'];
+
+    $categoriasModel = new Categorias();
+    $categoria = $categoriasModel->Editar($id, $nome);
+}
+// if (isset($_POST['id'])) {
+//     $id = $_POST['id'];
+//     $nome = $_POST['nome'];
+
+//     $categoriasModel = new Categorias();
+//     $categoria = $categoriasModel->Editar($id, $nome);
+// }
+
+
 if (isset($_GET['id'])) {
     $modo = 'editar';
     $categoriasModel = new Categorias();
     $categoria = $categoriasModel->buscarPorId($_GET['id']);
-} else {
-    $modo = 'criar';
-    $categoria = [
-        'id' => '',
-        'nome' => '',
-    ];
-}
+} 
+// else {
+//     $modo = 'criar';
+//     $categoria = [
+//         'id' => '',
+//         'nome' => '',
+//     ];
+// }
 
-if (isset($_POST['id'])) {
-    $excluir = new Categorias();
-    $excluir->Excluir($_POST['id']);
-    header('Location: categorias.php');
-    exit();
-}
+
+
+
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -41,24 +69,18 @@ if (isset($_POST['id'])) {
 
             <tr>
                 <td>
-                
-                    <form action="categoria_form.php" method="POST">
+                    <form action="editar-categorias.php" method="POST">
                         <h3>Editar</h3>
         
-                        <input type="hidden" name="id" value="<?php echo $categoria['id']; ?>">
+                        <input type="hidden" name="id" value="">
 
-                        <label for="nome">Nome:</label>
-                         <input type="text" id="nome" name="nome" required value="<?php echo $categoria['nome']; ?>"><br><br>
-                        <input type="submit" value="<?php echo $modo == 'editar' ? 'Atualizar' : 'Criar'; ?>">  
-
-                        <form action="Categorias.php" method="POST">                
-                        <input type="hidden" name="id" value="<?php echo $categoria['id']; ?>">
-                        <input type="submit" value="Excluir Categoria">
-                    </form>
+                        <label for="text">Nome:</label>
+                         <input type="text" id="nome" name="nome" required value="<?php echo $cat['nome']; ?>"><br><br>
+                        <input type="submit" value="Atualizar">  
                         
                     </form>
 
-                        <?php if ($modo == 'editar' && isset($categoria['id']) && $categoria['id']): ?>
+                        <!-- <?php if ($cat == 'editar' && isset($categoria['id']) && $cat['id']): ?> -->
 
                             <?php endif; ?>
                     

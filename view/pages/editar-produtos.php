@@ -2,6 +2,8 @@
 require_once __DIR__ . '../../../config/Database.php';
 require_once __DIR__ . '../../../model/Produtos.php';
 
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $nome = $_POST['nome'];

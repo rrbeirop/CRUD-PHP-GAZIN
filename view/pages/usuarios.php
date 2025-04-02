@@ -60,14 +60,14 @@ if (isset($_POST['id'])) {
                         <td><?php echo $usuario['email'] ?></td>
                         <td><?php echo $usuario['telefone'] ?></td>
                         <td><?php echo $usuario['data_nascimento'] ?></td>
-                        <td><?php echo $usuario['cpf'] ?></td>
+                        <td><?php echo $usuario['cpf'] ?></td>  
                         
                         <td>
-                            <!-- Visualizar -->
+                            <!-- Criar -->
                             <form action="visualizar.php" method="GET">
                                 <input type="hidden" name="id" value="<?php echo $usuario['id'] ?>">
                                 <button type="submit">
-                                    <span class="material-symbols-outlined">Visualizar</span>
+                                    <span class="material-symbols-outlined">Criar</span>
                                 </button>
                             </form>
 
@@ -78,12 +78,12 @@ if (isset($_POST['id'])) {
                                     <span class="material-symbols-outlined">
                                     Editar
                                     </span>
-                                
+
                                 </button>
                             </form>
 
                             <!-- Deletar -->
-                            <form action="home.php" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?')">
+                            <form action="usuarios.php" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este usuário?')">
                                 <input type="hidden" name="id" value="<?php echo $usuario['id'];?>">
                                 <button type="submit">
                                 Deletar

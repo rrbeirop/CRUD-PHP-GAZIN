@@ -7,10 +7,11 @@ $produtos = new Produtos();
 $listar = $produtos->listar();
 
 // EXCLUIR
+
 if (isset($_POST['id'])) {
     $id = $_POST['id'];
 
-    $produto = new Usuarios();
+    $produto = new Produtos();
     $produto->Excluir($id);
 }
 
@@ -52,12 +53,13 @@ if (isset($_POST['id'])) {
                         <td><?php echo $produto['descricao'] ?></td>
                         <td><?php echo $produto['preco'] ?></td>
                         <td>
-                            <!-- METHODS - Get / Post -->
+
+                        
                             <form action="visualizar.php" method="GET">
                                 <input type="hidden" name="id" value="<?php echo $produto['id'] ?>">
                                 <button>
                                     <span class="material-symbols-outlined">
-                                        Visualizar
+                                        Criar
                                     </span>
                                 </button>
                             </form>

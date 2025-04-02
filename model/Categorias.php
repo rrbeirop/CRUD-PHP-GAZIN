@@ -40,22 +40,30 @@ class Categorias {
 
 // EXCLUIR CATEGORIAS POR ID //
     public function Excluir($id) {
+    // Excluir produtos relacionados primeiro
+        $queryProdutos = "DELETE FROM produtos WHERE categoria_id = :id";
+        $stmtProdutos = $this->conn->prepare($queryProdutos);
+        $stmtProdutos->bindParam(':id', $id);
+        $stmtProdutos->execute();
+
+    // Agora excluir a categoria
         $query = "DELETE FROM categorias WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id);
-        return $stmt->execute();
     
+    return $stmt->execute();
     }
-
-//CADASTRAR // 
     public function Criar($nome): bool {
         $query = "INSERT INTO categorias (nome) VALUES (:nome)";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':nome', $nome);
         return $stmt->execute();
     }
+}   
 
-}
+//CADASTRAR // 
+    
+
 
     
 
