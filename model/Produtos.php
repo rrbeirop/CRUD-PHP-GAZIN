@@ -10,7 +10,8 @@ class Produtos {
 
     // LISTAR TABELA PRODUTOS
     public function listar() {
-        $sql = "SELECT p.*, cat.nome as categoria FROM produtos p INNER JOIN categorias cat ON p.categoria_id = cat.id";
+        $sql = "SELECT p.*, cat.nome as categoria FROM produtos p 
+                INNER JOIN categorias cat ON p.categoria_id = cat.id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -41,7 +42,8 @@ class Produtos {
 
         if ($stmt->rowCount() > 0) {
             header('Location: produtos.php');
-
+            exit;
+        }
     }
 
     // EXCLUIR PRODUTO POR ID
@@ -68,6 +70,5 @@ class Produtos {
             exit;
         }
     }
-
 }
 ?>
