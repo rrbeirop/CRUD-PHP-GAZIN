@@ -38,6 +38,12 @@ if (isset($_POST['id'])) {
         <h1>Produtos</h1>
 
         <table class="table">
+
+                <form action="editar-produtos.php" method="GET">
+                    <input type="hidden" name="id" id="" value="">
+                    <button class="novo" type="submit"> Criar</button>
+                </form>
+
             <thead>
                 <th>ID</th>
                 <th>Nome</th>
@@ -51,19 +57,12 @@ if (isset($_POST['id'])) {
                         <td><?php echo $produto['id'] ?></td>
                         <td><?php echo $produto['nome'] ?></td>
                         <td><?php echo $produto['descricao'] ?></td>
+                        <td><?php echo $produto['categoria'] ?></td>
                         <td><?php echo $produto['preco'] ?></td>
+                        </td>
                         <td>
 
                         
-                            <form action="visualizar.php" method="GET">
-                                <input type="hidden" name="id" value="<?php echo $produto['id'] ?>">
-                                <button>
-                                    <span class="material-symbols-outlined">
-                                        Criar
-                                    </span>
-                                </button>
-                            </form>
-
                             <form action="editar-produtos.php" method="GET">
                                 <input type="hidden" name="id" value="<?php echo $produto['id'] ?>">
                                 <button>

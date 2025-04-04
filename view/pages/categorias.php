@@ -14,6 +14,9 @@ if (isset($_POST['id'])) {
     $cat->Excluir($id);
 }
 
+
+
+
 ?>
 
 <html lang="pt-br">
@@ -36,6 +39,11 @@ if (isset($_POST['id'])) {
 
         <table class="table">
             <thead>
+                <form action="editar-categorias.php" method="GET">
+                    <input type="hidden" name="id" id="" value="">
+                    <button class="novo" type="submit"> Criar</button>
+                </form>
+
                 <th>ID</th>
                 <th>Nome</th>
                 <!-- <th>Descrição</th> -->
@@ -48,16 +56,6 @@ if (isset($_POST['id'])) {
                         <td><?php echo $cat['nome'] ?></td>
 
                         <td>
-                            <!-- Visualizar Categoria -->
-                            <form action="visualizar.php" method="GET">
-                                <input type="hidden" name="id" value="<?php echo $cat['id'] ?>">
-                                <button>
-                                    <span class="material-symbols-outlined">
-                                       Criar
-                                    </span>
-                                </button>
-                            </form>
-
                             <!-- Editar Categoria -->
                             <form action="editar-categorias.php" method="GET">
                                 <input type="hidden" name="id" value="<?php echo $cat['id'] ?>">

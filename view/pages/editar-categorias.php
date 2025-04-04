@@ -4,49 +4,48 @@ require_once __DIR__ . '../../../config/Database.php';  // Certifique-se de que 
 require_once __DIR__ . '../../../model/Categorias.php'; // Certifique-se de que a classe Categorias está corretamente incluída.
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $id = $_GET['id'];
-    // $nome = $_POST['nome'];
+// if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+//     $id = $_GET['id'];
+//     // $nome = $_POST['nome'];
     
-    $categoria = new Categorias();
-    $cat = $categoria->BuscarPorId($id);
+//     $categoria = new Categorias();
+//     $cat = $categoria->BuscarPorId($id);
 
-    // echo "Produto atualizado com sucesso!";
-}
+//     // echo "Produto atualizado com sucesso!";
+// }
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = $_POST['id'];
-    $nome = $_POST['nome'];
-
     $categoriasModel = new Categorias();
-    $categoria = $categoriasModel->Editar($id, $nome);
+    if (!empty($_POST['id'])) {
+        $id = $_POST['id'];
+        $nome = $_POST['nome'];
+    
+        $categoria = $categoriasModel->Editar($id, $nome);
+    }
+    else {
+        $nome = $_POST['nome'];
+        $categoriasModel->Criar($nome);
+    }
 }
-// if (isset($_POST['id'])) {
-//     $id = $_POST['id'];
-//     $nome = $_POST['nome'];
 
-//     $categoriasModel = new Categorias();
-//     $categoria = $categoriasModel->Editar($id, $nome);
-// }
+//CRIAR //
 
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-if (isset($_GET['id'])) {
-    $modo = 'editar';
-    $categoriasModel = new Categorias();
-    $categoria = $categoriasModel->buscarPorId($_GET['id']);
-} 
-// else {
-//     $modo = 'criar';
-//     $categoria = [
-//         'id' => '',
-//         'nome' => '',
-//     ];
-// }
+    if (!empty($_GET['id'])) {
+        $modo = 'EDICAO';
+        $categoriasModel = new Categorias();
+        $cat = $categoriasModel->buscarPorId($_GET['id']);
+    } else {
+        $modo = 'CRIACAO';
+        $cat = [
+        'id'=> '',
+        'nome' => ''
+    ];  
+}
 
-
-
-
+}
 
 ?>
 
@@ -68,15 +67,16 @@ if (isset($_GET['id'])) {
 
 
             <tr>
-                <td>
+                <td>  
                     <form action="editar-categorias.php" method="POST">
                         <h3>Editar</h3>
         
-                        <input type="hidden" name="id" value="">
+                        <input type="hidden" name="id" value="<?php echo $cat['id']; ?>">
 
                         <label for="text">Nome:</label>
                          <input type="text" id="nome" name="nome" required value="<?php echo $cat['nome']; ?>"><br><br>
                         <input type="submit" value="Atualizar">  
+                        
                         
                     </form>
 

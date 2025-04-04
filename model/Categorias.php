@@ -35,7 +35,10 @@ class Categorias {
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':nome', $nome);
-        return $stmt->execute();
+        $stmt->execute();
+        if ($stmt->rowCount() > 0) {
+            header('Location: categorias.php');
+        }
     }
 
 // EXCLUIR CATEGORIAS POR ID //
@@ -53,18 +56,16 @@ class Categorias {
     
     return $stmt->execute();
     }
-    public function Criar($nome): bool {
+    public function Criar($nome) {
         $query = "INSERT INTO categorias (nome) VALUES (:nome)";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':nome', $nome);
-        return $stmt->execute();
-    }
+        $stmt->execute();
+        
+        if ($stmt->rowCount() > 0) {
+        header('Location: categorias.php');}
+    } 
+
+    
 }   
-
-//CADASTRAR // 
-    
-
-
-    
-
 ?>
